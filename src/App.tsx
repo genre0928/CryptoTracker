@@ -3,7 +3,6 @@ import Router from "./Router";
 import { isPropertySignature } from "typescript";
 
 const GlobalStyle = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap');
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -33,14 +32,17 @@ footer, header, hgroup, menu, nav, section {
 * {
   box-sizing: border-box;
 }
+
 body {
-	line-height: 1;
-  font-family: "Winky Sans", sans-serif;
-  background-color: ${props => props.theme.bgColor};
-  color : ${props => props.theme.textColor}
+	font-family: "Poor Story", system-ui;
+  line-height: 1;
+
+  background-color: ${(props) => props.theme.bgColor};
+  color : ${(props) => props.theme.textColor}
 }
 a {
   text-decoration: none;
+  color: inherit;
 }
 
 ol, ul {
