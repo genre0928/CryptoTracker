@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import LoadingOverlay from "../LoadingOverlay";
+import { useQuery } from "react-query";
+import { fetchCoins } from "../api";
 
 const Container = styled.div`
   padding: 0px 20px;
@@ -14,6 +16,7 @@ const Header = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 15px;
 `;
 
 const CoinsList = styled.ul``;
@@ -24,9 +27,10 @@ const Coin = styled.li`
   border-radius: 15px;
   margin-bottom: 10px;
   a {
+    display: flex;
+    align-items: center;
     padding: 20px;
     transition: color 0.2s ease-in;
-    display: block;
   }
 
   &:hover {
@@ -41,41 +45,67 @@ const Title = styled.h1`
   color: ${(props) => props.theme.accentColor};
 `;
 
-// 코인 정보의 인터페이스 생성성
-interface CoinInterface {
+const Img = styled.img`
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+`;
+
+// 코인 정보의 인터페이스 생성
+interface ICoin {
+  ath: number;
+  ath_change_percentage: number;
+  ath_date: string;
+  atl: number;
+  atl_change_percentage: number;
+  atl_date: string;
+  circulating_supply: number;
+  current_price: number;
+  fully_diluted_valuation: number;
+  high_24h: number;
   id: string;
+  image: string;
+  last_updated: string;
+  low_24h: number;
+  market_cap: number;
+  market_cap_change_24h: number;
+  market_cap_change_percentage_24h: number;
+  market_cap_rank: number;
+  max_supply: number;
   name: string;
+  price_change_24h: number;
+  price_change_percentage_24h: number;
+  roi: {
+    currency: string;
+    percentage: number;
+    times: number;
+  };
   symbol: string;
-  rank: number;
-  is_new: boolean;
-  is_active: boolean;
-  type: string;
+  total_supply: number;
+  total_volume: number;
 }
 
 function Coins() {
-  const [coins, setCoins] = useState<CoinInterface[]>([]);
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    (async () => {
-      const res = await fetch("https://api.coinpaprika.com/v1/coins");
-      const json = await res.json();
-      setCoins(json.slice(0, 100));
-      setLoading(false);
-    })();
-  }, []);
+  const { isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins);
   return (
     <Container>
       <Header>
-        <Title>코인</Title>
+        <Title>메인 화면</Title>
       </Header>
-      {loading ? (
+      {isLoading ? (
         <LoadingOverlay />
       ) : (
         <CoinsList>
-          {coins.map((coin, i) => (
+          {data?.map((coin, i) => (
             <Coin key={coin.id}>
-              <Link to={`/${coin.id}`}>
-                {i}. {coin.name}({coin.symbol}) &rarr;
+              <Link
+                to={{
+                  pathname: `/${coin.id}`,
+                }}
+                state={coin}
+              >
+                <Img src={coin.image} />
+                {coin.name} &rarr;
               </Link>
             </Coin>
           ))}

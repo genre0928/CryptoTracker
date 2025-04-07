@@ -1,6 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import Router from "./Router";
 import { isPropertySignature } from "typescript";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
@@ -59,13 +60,18 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
-}`;
+}
+.apexcharts-tooltip-active {
+	color: black;
+}
+`;
 
 function App() {
   return (
     <>
       <GlobalStyle />
       <Router />
+      {/* <ReactQueryDevtools initialIsOpen={true}/> */}
     </>
   );
 }
