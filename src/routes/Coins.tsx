@@ -4,6 +4,7 @@ import styled from "styled-components";
 import LoadingOverlay from "../LoadingOverlay";
 import { useQuery } from "react-query";
 import { fetchCoins } from "../api";
+import Navigation from "../Navigation";
 
 const Container = styled.div`
   padding: 0px 20px;

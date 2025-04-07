@@ -13,6 +13,7 @@ import Price from "./Price";
 import Chart from "./Chart";
 import { useQuery } from "react-query";
 import { fetchCoins } from "../api";
+import Navigation from "../Navigation";
 
 const Container = styled.div`
   padding: 0px 20px;
@@ -167,6 +168,7 @@ function Coin() {
           {state?.name ? state.name : isLoading ? "Loading..." : coin?.name}
         </Title>
       </Header>
+      <Navigation />
       {isLoading ? (
         <LoadingOverlay />
       ) : (
