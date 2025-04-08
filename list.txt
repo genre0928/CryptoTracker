@@ -7,9 +7,8 @@
 3. 캔들차트 만들어보기
 - 기본 linechart로 시작 / 차트 타입 선택할 수 있도록 UI 추가
 - useState 활용해서 linechart or candlechart 분기 설정 후 조건부 렌더링으로 구현
-4. CoinGecko 저작권 표시용 컴포넌트 추가 및 렌더링
-5. price 컴포넌트 활성화
-6. 코인리스트 카드뷰 / 리스트뷰 구현
+4. price 컴포넌트 활성화
+- 카드뷰처럼 완성
 
 <공부한 내용 정리>
 1. reactQuery 

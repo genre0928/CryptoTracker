@@ -175,11 +175,11 @@ function Coin() {
         <>
           <Overview>
             <OverviewItem>
-              <span>Rank:</span>
+              <span>Rank</span>
               <span>{coin?.market_cap_rank}</span>
             </OverviewItem>
             <OverviewItem>
-              <span>Symbol:</span>
+              <span>Symbol</span>
               <span>${coin?.symbol}</span>
             </OverviewItem>
             <OverviewItem>
@@ -199,7 +199,7 @@ function Coin() {
           <Description></Description>
           <Overview>
             <OverviewItem>
-              <span>Total Suply:</span>
+              <span>Total Suply</span>
               <span>
                 {coin?.total_supply || coin?.total_supply !== null
                   ? Number(coin?.total_supply.toFixed(2)).toLocaleString(
@@ -234,7 +234,7 @@ function Coin() {
             </Tab>
           </Tabs>
           <Routes>
-            <Route path="price" element={<Price />}></Route>
+            <Route path="price" element={<Price coinId={coinId!} />}></Route>
             <Route path="chart" element={<Chart coinId={coinId!} />}></Route>
           </Routes>
         </>

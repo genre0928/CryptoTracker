@@ -107,3 +107,13 @@ export async function fetchCoinHistory(coinId: string, days: number) {
 
   return json;
 }
+
+export async function fetchPrice(coinId: string) {
+  const res = await fetch(
+    `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${coinId}`,
+    options
+  );
+  const json = await res.json();
+
+  return json;
+}
